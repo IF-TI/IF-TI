@@ -11,6 +11,13 @@ module.exports = {
         filename: 'principal.js',
         path: __dirname + '/public'
     },
+    devServer: {
+        static: {
+            directory: "./public"
+        },
+        compress: true,
+        port: 9000
+    },
     optimization: {
         minimizer: [
             new UgiflyJSPlugin({
@@ -20,7 +27,7 @@ module.exports = {
             new OptimizeCSSAssetsPlugin({})
         ]
     },
-    plugins:[
+    plugins: [
         new MiniCssExtractPlugin({
             filename: "estilo.css"
         })
@@ -34,6 +41,9 @@ module.exports = {
                 'css-loader',
                 'sass-loader',
             ]
+        },{
+            test: /\.(svg|jpg|gif)$/,
+            use:['file-loader']
         }]
     }
 }
